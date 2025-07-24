@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: leanlima/frontend-avanti:1.0
+    ports:
+      - "80:80"
+    environment:
+      - API_PESSOAS_URL=http://ms-pessoas:8000
+      - API_SAUDACOES_URL=http://ms-saudacoes:8080
+    depends_on:
+      - ms-pessoas
+      - ms-saudacoes
+    restart: unless-stopped
+
+  ms-pessoas:
+    image: leanlima/ms-pessoas:1.0
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  ms-saudacoes:
+    image: leanlima/ms-saudacoes:1.0
+    volumes:
+      - ./ms-saudacoes/data:/app/data
+    expose:
+      - "8080"
+    restart: unless-stopped
