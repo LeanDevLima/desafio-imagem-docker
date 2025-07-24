@@ -1,0 +1,15 @@
+# Docker
+**/Dockerfile
+**/.dockerignore
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Go
+/bin/
+*.exe
+
+# Banco de dados
+*.db
